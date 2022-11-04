@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+/////////////////////////////////////////////////
+size_t INITIAL_CAPACITY = 8;
+typedef struct node
+{
+    int key; 
+    bool exsist;
+
+}Node;
+
+typedef struct array_list_bst
+{
+    Node *array;
+    // max capacity of array in # of elements
+    size_t capacity;
+
+} ArrBst;
+
+
+
+
+
+/////////////////////////////
+
+
+
+
+
+///////////////////////////////
+
+
+
+
+int main(int argc, char *argv[])
+{
+    return 0;
+}
+
+
+//change it when node true print key when false print null
+void print_in_level_order(ArrBst list)
+{
+    for (size_t i = 0; i < list.capacity; i++)
+    {
+        printf("%d,", list.array[i]);
+    }
+    puts("");
+}   
+
+
+void destroy(ArrBst *list)
+{
+    free(list);
+}
+
+size_t left_child(size_t parent)
+{
+    return 2* parent + 1;
+}
+
+size_t right_child(size_t parent)
+{
+    return 2* parent + 2;
+}
+
+size_t parent(size_t child)
+{
+    return (child-1)/2; 
+}
+
+void resize(ArrBst *listPtr)
+{
+    listPtr->capacity *= 2 + 1;
+    // realloc: re-allocate memory
+    listPtr->array = realloc(listPtr->array, listPtr->capacity * sizeof(int));
+}
+
+ArrBst * initialize_ab()
+{
+    ArrBst *arrPtr = malloc(sizeof(ArrBst));
+    arrPtr->capacity = 1;
+    arrPtr->array = calloc(arrPtr->capacity, sizeof(Node));
+    Node *newNode = malloc(sizeof(Node));
+    newNode->key = 0; 
+    newNode -> exsist = false;
+    arrPtr->array[0] =  *newNode;
+    return arrPtr;
+}
+
+/*
+Okay pseudocode cuz im tired
+
+initializing array
+- whenever you initialize you initiazlie the array wiht one node whose node is set to false
+
+
+resize
+
+insert 
+
+- traverse the list using the same algorithm but using the right child and left child
+- check first if the index of the child is greater than capacity. if so then resize
+- if null then insert node
+
+
+delete
+
+predecessor 
+
+merge
+
+notes
+
+*/
